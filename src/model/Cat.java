@@ -14,9 +14,7 @@ public class Cat {
     private int health;
     private int averageNumber;
     private int amount;
-
     private static final String LINE = "--+--------+-------+---------+---------+-------------+------------------+";
-
 
 
     public Cat(String name, int age, int satiety, int sentiment, int health) {

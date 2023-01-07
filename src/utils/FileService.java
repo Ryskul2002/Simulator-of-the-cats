@@ -14,6 +14,13 @@ public class FileService implements FileServiceRunnable {
         List<Cat> list = new ArrayList<>();
         getCats(list);
         while (true) {
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).getHealth() > 100 || list.get(i).getSentiment() > 100 || list.get(i).getSatiety() > 100) {
+                    list.get(i).setHealth(100);
+                    list.get(i).setSatiety(100);
+                    list.get(i).setSentiment(100);
+                }
+            }
             showCats(list);
             userChoice(list);
         }
@@ -63,6 +70,19 @@ public class FileService implements FileServiceRunnable {
         print("You need to choose one of the cat from 1 to 4: ");
         int answer = new Scanner(System.in).nextInt();
         Cat cat = getTheCat(list, answer);
+        if (cat.getAge() >= 1 || cat.getAge() < 5) {
+            cat.setHealth(cat.getHealth() + 7);
+            cat.setSentiment(cat.getSentiment() + 7);
+            cat.setSatiety(cat.getSatiety() - 3);
+        } else if (cat.getAge() >= 6 || cat.getAge() < 10) {
+            cat.setHealth(cat.getHealth() + 5);
+            cat.setSentiment(cat.getSentiment() + 5);
+            cat.setSatiety(cat.getSatiety() - 5);
+        } else if (cat.getAge() >= 7) {
+            cat.setHealth(cat.getHealth() + 4);
+            cat.setSentiment(cat.getSentiment() + 4);
+            cat.setSatiety(cat.getSatiety() - 6);
+        }
         print("You played with the cat " + cat.getName() + ", " + cat.getAge() + "years old\n");
     }
 
@@ -70,6 +90,16 @@ public class FileService implements FileServiceRunnable {
         print("You need to choose one of the cat from 1 to 4");
         int answer = new Scanner(System.in).nextInt();
         Cat cat = getTheCat(list, answer);
+        if (cat.getAge() >= 1 || cat.getAge() < 5) {
+            cat.setSentiment(cat.getSentiment() + 7);
+            cat.setSatiety(cat.getSatiety() + 7);
+        } else if (cat.getAge() >= 6 || cat.getAge() < 10) {
+            cat.setSentiment(cat.getSentiment() + 5);
+            cat.setSatiety(cat.getSatiety() + 5);
+        } else if (cat.getAge() >= 7) {
+            cat.setSentiment(cat.getSentiment() + 4);
+            cat.setSatiety(cat.getSatiety() + 4);
+        }
         print("You fed the cat " + cat.getName() + ", " + cat.getAge() + "years old\n");
     }
 
@@ -77,6 +107,19 @@ public class FileService implements FileServiceRunnable {
         print("You need to choose one of the cat from 1 to 4: ");
         int answer = new Scanner(System.in).nextInt();
         Cat cat = getTheCat(list, answer);
+        if (cat.getAge() >= 1 || cat.getAge() < 5) {
+            cat.setHealth(cat.getHealth() + 7);
+            cat.setSentiment(cat.getSentiment() - 3);
+            cat.setSatiety(cat.getSatiety() - 3);
+        } else if (cat.getAge() >= 6 || cat.getAge() < 10) {
+            cat.setHealth(cat.getHealth() + 5);
+            cat.setSentiment(cat.getSentiment() - 5);
+            cat.setSatiety(cat.getSatiety() - 5);
+        } else if (cat.getAge() >= 7) {
+            cat.setHealth(cat.getHealth() + 4);
+            cat.setSentiment(cat.getSentiment() - 6);
+            cat.setSatiety(cat.getSatiety() - 6);
+        }
         print("You went to the Vet with " + cat.getName() + ", " + cat.getAge() + "years old\n");
     }
 
