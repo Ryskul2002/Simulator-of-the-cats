@@ -15,7 +15,7 @@ public class FileService implements FileServiceRunnable {
         getCats(list);
         while (true) {
             showCats(list);
-            addCat(list);
+            userChoice(list);
         }
     }
 
@@ -59,7 +59,51 @@ public class FileService implements FileServiceRunnable {
         return list;
     }
 
-    public void
+    public void playWithTheCat(List<Cat> list) {
+        print("You need to choose one of the cat from 1 to 4: ");
+        int answer = new Scanner(System.in).nextInt();
+        Cat cat = getTheCat(list, answer);
+        print("You played with the cat " + cat.getName() + ", " + cat.getAge() + "years old\n");
+    }
+
+    public void feedTheCat(List<Cat> list) {
+        print("You need to choose one of the cat from 1 to 4");
+        int answer = new Scanner(System.in).nextInt();
+        Cat cat = getTheCat(list, answer);
+        print("You fed the cat " + cat.getName() + ", " + cat.getAge() + "years old\n");
+    }
+
+    public void goToVet(List<Cat> list) {
+        print("You need to choose one of the cat from 1 to 4: ");
+        int answer = new Scanner(System.in).nextInt();
+        Cat cat = getTheCat(list, answer);
+        print("You went to the Vet with " + cat.getName() + ", " + cat.getAge() + "years old\n");
+    }
+
+    public Cat getTheCat(List<Cat> list, int number) {
+        number--;
+        return sorted(list).get(number);
+    }
+
+    public void userChoice(List<Cat> list) {
+        print("You need to choose one of the versions \n 1 -> feed the cat \n 2 -> play with the cat \n 3 -> go to Vet \n 4 -> add new cat: ");
+        int userChoice = new Scanner(System.in).nextInt();
+        switch (userChoice) {
+            case 1:
+                feedTheCat(list);
+                break;
+            case 2:
+                playWithTheCat(list);
+                break;
+            case 3:
+                goToVet(list);
+                break;
+            case 4:
+                addCat(list);
+                break;
+            default:
+        }
+    }
 
     public void showCats(List<Cat> list) {
         print(LINE + "\n");

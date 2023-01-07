@@ -13,6 +13,7 @@ public class Cat {
     private int sentiment;
     private int health;
     private int averageNumber;
+    private int amount;
 
     private static final String LINE = "--+--------+-------+---------+---------+-------------+------------------+";
 
@@ -25,6 +26,15 @@ public class Cat {
         this.sentiment = sentiment;
         this.health = health;
         this.averageNumber = (satiety + sentiment + health) / 3;
+        this.amount += 1;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public String getName() {
