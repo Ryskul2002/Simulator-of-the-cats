@@ -123,13 +123,24 @@ public class FileService implements FileServiceRunnable {
         print("You went to the Vet with " + cat.getName() + ", " + cat.getAge() + "years old\n");
     }
 
+    public void theNextDay(List<Cat> list) {
+        for (int i = 0; i < list.size(); i++) {
+            int satiety = RMD.nextInt(1,6);
+            list.get(i).setSatiety(list.get(i).getSatiety() - satiety);
+            int mood = RMD.nextInt(-3, 3);
+            list.get(i).setSentiment(list.get(i).getSentiment() - mood);
+            int health = RMD.nextInt(-3, 3);
+            list.get(i).setHealth(list.get(i).getHealth() - health);
+        }
+    }
+
     public Cat getTheCat(List<Cat> list, int number) {
         number--;
         return sorted(list).get(number);
     }
 
     public void userChoice(List<Cat> list) {
-        print("You need to choose one of the versions \n 1 -> feed the cat \n 2 -> play with the cat \n 3 -> go to Vet \n 4 -> add new cat: ");
+        print("You need to choose one of the versions \n 1 -> feed the cat \n 2 -> play with the cat \n 3 -> go to Vet \n 4 -> add new cat \n 5 -> choose the next day: ");
         int userChoice = new Scanner(System.in).nextInt();
         switch (userChoice) {
             case 1:
@@ -143,6 +154,9 @@ public class FileService implements FileServiceRunnable {
                 break;
             case 4:
                 addCat(list);
+                break;
+            case 5:
+                theNextDay(list);
                 break;
             default:
         }
